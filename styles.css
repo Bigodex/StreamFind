@@ -213,7 +213,7 @@ footer {
 
     .resultados-pesquisa {
         width: 100%; /* Para usar toda a largura do dispositivo */
-        height: 60vh;
+        height: 90vh;
         padding: 0.4rem;
     }
 
@@ -235,4 +235,53 @@ footer {
     footer {
         font-size: 0.7rem;
     }
+
+    /* Responsividade para iPhone 11, 12, 13, 14, 15 (largura máxima de 414px) */
+@media (max-width: 414px) {
+    body {
+        font-size: 0.75rem; /* Levemente maior que em dispositivos menores */
+    }
+
+    h1 {
+        font-size: 1.6rem; /* Ajuste levemente maior */
+        letter-spacing: 0.18rem; /* Ajuste proporcional */
+    }
+
+    section input {
+        width: 18rem; /* Ajusta para largura um pouco maior */
+        padding: 0.7rem;
+        font-size: 0.75rem;
+    }
+
+    section button {
+        padding: 0.55rem 0.85rem;
+        font-size: 0.75rem;
+    }
+
+    .resultados-pesquisa {
+        width: 100%; /* Ocupa a largura completa */
+        height: 80vh; /* Altura ligeiramente maior para acomodar mais resultados */
+        padding: 0.5rem;
+    }
+
+    .item-resultado {
+        flex-direction: column; /* Empilhamento em telas pequenas */
+        align-items: center;
+    }
+
+    .imagem-resultado {
+        width: 100%; /* Ocupa a largura disponível */
+        margin-right: 0;
+        margin-top: 1rem;
+    }
+
+    .item-resultado h2 {
+        font-size: 1.1rem; /* Tamanho um pouco maior, proporcional ao resto */
+    }
+
+    footer {
+        font-size: 0.72rem;
+    }
+}
+
 }
