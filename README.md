@@ -24,7 +24,8 @@
 
 ## 📸 Captura de Tela
 
-![Screenshot da Plataforma](img/screenshot.png)
+![image](https://github.com/user-attachments/assets/d1aedb6e-8d99-4dc8-a92e-8e06c5faccc7)
+
 
 ## 📄 Exemplo de Uso
 
