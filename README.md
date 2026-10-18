@@ -1,112 +1,55 @@
-# 🎬 StreamFind - Plataforma de Busca de Filmes e Séries
+# 🎬 StreamFind — Descubra filmes e séries
 
-**StreamFind** é uma plataforma que ajuda você a descobrir onde seus filmes e séries favoritos estão disponíveis para streaming, proporcionando uma experiência prática e rápida. Desenvolvida com **JavaScript**, **HTML**, e **CSS**, a aplicação permite realizar buscas detalhadas, exibindo informações completas sobre o conteúdo desejado.
+**StreamFind** ajuda você a descobrir o que assistir e onde encontrar. Busque qualquer filme ou série e veja pôster, sinopse em português, direção, elenco, gêneros, prêmios, duração, bilheteria, trailer e serviços de streaming.
+
+Feito apenas com **HTML, CSS e JavaScript**, sem build e sem chave de API.
 
 ## 🚀 Funcionalidades
 
-- **Busca de Títulos**: Localize filmes e séries rapidamente através da barra de pesquisa.
-- **Informações Detalhadas**: Além do streaming, obtenha dados como:
-  - Direção
-  - Ano de lançamento
-  - Elenco
-  - Gênero
-  - Duração
-  - Prêmios
-  - Bilheteria
-  - Nota (rating)
-- **Plataformas de Streaming**: Ícones dos principais serviços de streaming (Netflix, Prime Video, Apple TV) são exibidos junto com os resultados.
+- **Página inicial viva**: carrossel de destaques em alta no Brasil, Top 10 e coleções curadas (séries aclamadas, clássicos, ficção científica, animações, cinema brasileiro).
+- **Busca com sugestões** enquanto você digita (atalho: tecla `/`), com filtros Filmes/Séries.
+- **Filmes por gênero**: os 50 mais populares do iTunes Brasil em 11 gêneros.
+- **Séries**: coleções por tema (fantasia, crime, comédia, animes…).
+- **Detalhes completos**: sinopse da Wikipédia, ficha técnica, elenco, trailer em vídeo (quando disponível), plataformas de streaming e atalho para o JustWatch.
+- **Minha lista**: salve títulos para assistir depois (fica guardado no navegador).
+- **Responsivo**: barra de navegação inferior no celular, animações suaves e respeito a `prefers-reduced-motion`.
 
-## 🛠️ Tecnologias Utilizadas
+## 🔌 APIs gratuitas utilizadas
 
-- **HTML5**: Estrutura da página.
-- **CSS3**: Estilização responsiva e layouts modernos.
-- **JavaScript**: Manipulação da DOM e implementação da lógica de busca.
+| Fonte | Uso |
+|---|---|
+| [Wikidata](https://www.wikidata.org) (API + SPARQL) | Catálogo e busca, direção, elenco, gêneros, prêmios, duração, temporadas, bilheteria, emissora |
+| [Wikipédia](https://pt.wikipedia.org) (REST + pageimages) | Pôsteres e sinopse em português |
+| [iTunes Brasil](https://performance-partners.apple.com/search-api) (RSS + Search + Lookup) | Rankings em alta por gênero, trailers e preço de aluguel |
+| [JustWatch](https://www.justwatch.com/br) (link) | Lista completa de onde assistir |
 
-## 📸 Captura de Tela
+Todas aceitam requisições direto do navegador (CORS) e as respostas ficam em cache no `localStorage`.
 
-![image](https://github.com/user-attachments/assets/d1aedb6e-8d99-4dc8-a92e-8e06c5faccc7)
+## 🛠️ Tecnologias
 
+HTML5, CSS3 (variáveis, grid, animações), JavaScript puro e ícones [Lucide](https://lucide.dev).
 
-## 📄 Exemplo de Uso
+## 🖥️ Como rodar
 
-Aqui está uma amostra de como a função de pesquisa é implementada:
+Abra o `index.html` no navegador ou sirva a pasta localmente:
 
-```javascript
-function pesquisar() {
-  let section = document.getElementById("resultados-pesquisa");
-  let campoPesquisa = document.getElementById("campo-pesquisa").value.toLowerCase();
-  
-  if (campoPesquisa === "") {
-    section.innerHTML = "<p>Nada foi encontrado. Você não realizou nenhuma pesquisa :/</p>";
-    return;
-  }
-
-  let resultados = "";
-  for (let dado of dados) {
-    if (dado.titulo.toLowerCase().includes(campoPesquisa)) {
-      resultados += `
-        <div class="item-resultado">
-          <img src="${dado.imagem}" alt="${dado.titulo}" class="imagem-resultado">
-          <div class="texto-resultado">
-            <h2><a href="${dado.link}" target="_blank">${dado.titulo}</a></h2>
-            <p>${dado.descricao}</p>
-          </div>
-        </div>
-      `;
-    }
-  }
-
-  section.innerHTML = resultados || "<p>Nenhum resultado encontrado.</p>";
-}
+```bash
+python -m http.server 8000
+# acesse http://localhost:8000
 ```
 
-### Dados Exemplo
-
-```javascript
-let dados = [
-  {
-    titulo: 'Forrest Gump - O Contador de Histórias',
-    descricao: 'A emocionante história de Forrest Gump...',
-    direcao: 'Robert Zemeckis',
-    Ano: '1994',
-    Elenco: 'Tom Hanks, Robin Wright, Gary Sinise',
-    Gênero: 'Drama, Comédia, Romance',
-    Duração: '142 minutos',
-    Prêmios: '6 Oscars',
-    Bilheteria: '$678 milhões',
-    rating: '4.7/5',
-    imagem: 'img/forrestgump.jpg',
-    link: 'https://en.wikipedia.org/wiki/Forrest_Gump',
-    tags: 'drama, comédia, romance'
-  }
-];
-```
-
-## 🖥️ Como Rodar Localmente
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seuusuario/seurepositorio.git
-   ```
-2. Navegue até o diretório do projeto:
-   ```bash
-   cd seurepositorio
-   ```
-3. Abra o arquivo `index.html` no seu navegador preferido.
-
-## 📂 Estrutura de Pastas
+## 📂 Estrutura
 
 ```
 /
-├── css/
-│   └── style.css
-├── img/
-│   └── forrestgump.jpg
-├── js/
-│   └── app.js
-└── index.html
+├── index.html   # estrutura: header, navegação, modal e rodapé
+├── styles.css   # tema, componentes, animações e responsividade
+├── app.js       # APIs, rotas (#/filmes, #/series, #/lista, #/busca), cards e modal
+└── dados.js     # coleções curadas, gêneros e plataformas de streaming
 ```
+
+Para adicionar uma coleção, inclua um item em `COLECOES` no `dados.js` com os IDs do IMDb (`tt...`).
 
 ## 🤝 Contribuições
 
-Contribuições são sempre bem-vindas! Sinta-se à vontade para enviar pull requests ou abrir issues para melhorias e sugestões.
+Contribuições são bem-vindas! Envie pull requests ou abra issues com sugestões.
